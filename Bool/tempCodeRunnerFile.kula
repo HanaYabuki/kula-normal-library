@@ -1,5 +1,0 @@
-n := 0;
-while (lt(n, 10)) {
-    Shell.println(Ambiguous);
-    n = +(n, 1);
-}
