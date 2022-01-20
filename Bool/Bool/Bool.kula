@@ -1,0 +1,58 @@
+# Author: Hana_Yabuki
+#
+# This lib offers 3 consts. => BoolTrue, BoolFalse, Ambigious.
+# * BoolTrue & BoolFalse should be used when "Bool" type is needed.
+# * Ambigious should be used when you want to confuse your friend. 
+#   - It will return a boolean number different from the last one.
+#
+# Have fun!
+
+
+type Bool {
+    isTrue  :   Func<>:Num,
+    isFalse :   Func<>:Num,
+    toStr   :   Func<>:Str,
+};
+
+BoolTrue := func(): Bool {
+    map := Map.new();
+    Map.put(map, "isTrue", func():Num { return 1; });
+    Map.put(map, "isFalse", func():Num { return 0; });
+    Map.put(map, "toStr", func():Str { return "True"; });
+    return map;
+}();
+
+BoolFalse := func(): Bool {
+    map := Map.new();
+    Map.put(map, "isTrue", func():Num { return 0; });
+    Map.put(map, "isFalse", func():Num { return 1; });
+    Map.put(map, "toStr", func():Str { return "False"; });
+    return map;
+}();
+
+Ambiguous := func(): Bool {
+    val := 0;
+    map := Map.new();
+    Map.put(map, "isTrue", func():Num { 
+        val = +(val, 1);
+        val = Math.mod(val, 2);
+        return val;
+    });
+    Map.put(map, "isFalse", func():Num { 
+        if (map.isTrue()) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    });
+    Map.put(map, "toStr", func():Str { 
+        if (map.isTrue()) {
+            return "True";
+        }
+        else {
+            return "False";
+        }
+    });
+    return map;
+}();

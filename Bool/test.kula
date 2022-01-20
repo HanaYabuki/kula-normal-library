@@ -1,0 +1,11 @@
+$import "/Bool/Bool.kula"
+
+Shell.println("BoolFalse toStr =>", BoolFalse.toStr());
+Shell.println("BoolTrue toStr =>",BoolTrue.toStr());
+
+Shell.println("Ambigious toStr =>\\");
+n := 0;
+while (lt(n, 10)) {
+    Shell.println(n, " => ", Ambiguous.toStr());
+    n = +(n, 1);
+}
